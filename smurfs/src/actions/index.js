@@ -17,10 +17,18 @@ export const smurfsLoadFailure = error => {
         payload: error
     }
 }
-export const axiosSmurfs = () => dispatch => {
+export const getSmurfs = () => dispatch => {
     dispatch(smurfsLoading());
     return (
         axios.get(`http://localhost:3333/smurfs`)
+        .then(res => console.log(res))
+        .catch(error => dispatch(smurfsLoadFailure(error)))
+    )
+}
+export const postSmurfs = () => dispatch => {
+    dispatch(smurfsLoading());
+    return (
+        axios.post(`http://localhost:3333/smurfs`)
         .then(res => console.log(res))
         .catch(error => dispatch(smurfsLoadFailure(error)))
     )
