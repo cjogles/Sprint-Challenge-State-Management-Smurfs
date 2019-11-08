@@ -21,15 +21,16 @@ export const getSmurfs = () => dispatch => {
     dispatch(smurfsLoading());
     return (
         axios.get(`http://localhost:3333/smurfs`)
-        .then(res => console.log(res))
+        .then(res => dispatch(smurfsLoadSuccesful(res)))
         .catch(error => dispatch(smurfsLoadFailure(error)))
     )
 }
-export const postSmurfs = () => dispatch => {
+export const postSmurfs = (smurf) => dispatch => {
     dispatch(smurfsLoading());
+    console.log("POST smurf: ", smurf)
     return (
-        axios.post(`http://localhost:3333/smurfs`)
-        .then(res => console.log(res))
+        axios.post(`http://localhost:3333/smurfs`, smurf)
+        .then(res => console.log("post response", res))
         .catch(error => dispatch(smurfsLoadFailure(error)))
     )
 }

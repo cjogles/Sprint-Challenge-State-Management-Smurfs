@@ -13,12 +13,13 @@ const Form = (props) => {
           id: ''
         },
         onSubmit: values => {
-          alert(JSON.stringify(values, null, 2));
+          let smurf = JSON.stringify(values, null, 2);
+          props.dispatch(postSmurfs(smurf));
         },
       });  
 
     return (
-        <form onSubmit={formik.handleSubmit}>
+        <form onSubmit={formik.handleSubmit} style={{display: "flex", flexDirection: "column", width: "25rem", alignItems: "center", margin: "auto"}}>
             <label htmlFor="name">Name: </label>
             <input
                 id="name"
@@ -51,13 +52,9 @@ const Form = (props) => {
                 onChange={formik.handleChange}
                 value={formik.values.id}
             />
-            <button type="submit">Submit</button>
+            <button type="submit">Add Smurf</button>
         </form>
     )
 }
 
-const mapStateToProps = (state) => { 
-    return { smurfVillage: state }; 
-};
-
-export default connect(mapStateToProps)(Form);
+export default connect(state=>state)(Form);

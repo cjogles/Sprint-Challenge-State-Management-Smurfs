@@ -15,10 +15,14 @@ function App (props) {
         <br></br>
         <button onClick={() => 
           props.dispatch(getSmurfs())}>
-          What Smurfs? 
+          See Village 
         </button>
+        <br></br>
+        <br></br>
         <div >
-            
+          {console.log(props)}
+            {props.map(smurf => {
+            console.log(smurf)})}
         </div>        
       </div>
     );
